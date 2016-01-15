@@ -1,4 +1,4 @@
-package ParseQueryGenerators;
+package parseQueryGenerators;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -30,7 +30,6 @@ public class ParseQueryChainGenerator {
 
     public static ParseQuery<ParseObject> rootParseQuery(){
         QueryBuilder parseQueryBuilder = new QueryBuilder(parseClass);
-
         ParseQuery<ParseObject> rootQuery = parseQueryBuilder.generateSimpleParseQuery();
         return rootQuery;
 
@@ -38,7 +37,6 @@ public class ParseQueryChainGenerator {
 
     public static ParseQuery<ParseObject> generateRootParseQuery(){
         QueryBuilder parseQueryBuilder = new QueryBuilder(parseClass);
-
         ParseQuery<ParseObject> rootQuery = parseQueryBuilder.generateReferenceRelationQuery(relations);
         return rootQuery;
 

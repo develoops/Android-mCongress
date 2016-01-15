@@ -1,6 +1,8 @@
 package mcongress.mobicongress.com.myapplication;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
@@ -16,6 +18,8 @@ import com.parse.SaveCallback;
  * Created by Alvaro on 11/19/15.
  */
 public class StarterApplication extends Application {
+
+    private Boolean firstTime = null;
 
     @Override
     public void onCreate() {
@@ -33,6 +37,30 @@ public class StarterApplication extends Application {
         // defaultACL.setPublicReadAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
     }
+
+    public boolean isFirstTime() {
+        if (firstTime == null) {
+            SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
+            firstTime = mPreferences.getBoolean("firstTime", true);
+            if (firstTime) {
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.putBoolean("firstTime", false);
+                editor.commit();
+
+            }
+
+        }
+        return firstTime;
+    }
+
+    public void setFirstTime(){
+        SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putBoolean("firstTime",true);
+        editor.commit();
+        return;
+    }
+
 }
 
 

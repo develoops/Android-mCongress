@@ -1,4 +1,4 @@
-package ParseQueryGenerators;
+package parseQueryGenerators;
 
 import com.parse.ParseConfig;
 import com.parse.ParseObject;

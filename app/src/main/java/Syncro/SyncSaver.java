@@ -1,18 +1,35 @@
-package Syncro;
+package syncro;
 
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import dataFetchers.CloudDataFetcher;
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by Alvaro on 11/27/15.
  */
-public class Pinning {
+public class SyncSaver {
+
+    public static String parseClassName;
+    public static ArrayList<String> parseClassRelationsName = new ArrayList<>();
+
+    public static void syncDataFromParse(){
+
+        final CloudDataFetcher fetcher = new CloudDataFetcher();
+        fetcher.parseClass = parseClassName;
+        fetcher.parseClassRelationsName = parseClassRelationsName;
+        fetcher.estructureQueryTasks().onSuccessTask(new Continuation<ArrayList<ParseObject>, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<ArrayList<ParseObject>> task) throws Exception {
+                return pini(task.getResult());
+            }
+        });
+
+
+    }
 
     public static Task<Void> pini(ArrayList<ParseObject> arrayList) {
 
@@ -44,6 +61,7 @@ public class Pinning {
     public static Task<Void> pinFirstDownload(ArrayList<ParseObject> arrayList){
 
         return ParseObject.pinAllInBackground(arrayList);
+
     }
 
 }

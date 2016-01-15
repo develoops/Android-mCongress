@@ -1,13 +1,12 @@
-package DataFetchers;
+package dataFetchers;
 
-import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ParseQueryGenerators.QueryBuilder;
+import parseQueryGenerators.QueryBuilder;
 import bolts.Continuation;
 import bolts.Task;
 
